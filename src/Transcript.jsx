@@ -100,12 +100,12 @@ const Transcript = ({ transcript }) => {
   return (
     <div>
       <div>
-        <div className="mt-4 w-1/2 mx-auto bg-white p-6 rounded border min-h-[90vh]">
+        <div className="mt-4 w-1/2 mx-auto bg-white p-6 rounded border min-h-[90vh] flex flex-wrap">
           {editedTranscript.map(({ word, start_time, duration }, index) => (
             <span
               key={index}
               onClick={() => handleEditClick(index)}
-              className={`px-1 cursor-pointer rounded ${
+              className={`px-1 cursor-pointer rounded h-fit ${
                 currentTime >= start_time && currentTime < start_time + duration
                   ? 'bg-yellow-300 p-[5px]'
                   : ''
@@ -113,16 +113,16 @@ const Transcript = ({ transcript }) => {
             >
               {/* {true ? ( */}
               {editIndex === index ? (
-                <span className="relative">
+                <span className="relative h-fit">
                   <input
                     ref={inputRef}
                     type="text"
                     value={editWord}
                     onChange={handleEditChange}
                     onBlur={handleEditBlur}
-                    className="border border-gray-300 rounded absolute inset-0"
+                    className="border border-gray-300 rounded absolute inset-0 bg-transparent"
                   />
-                  <span>{editWord}</span>
+                  <span style={{visibility: 'hidden'}}>{editWord}</span>
                 </span>
               ) : (
                 word
